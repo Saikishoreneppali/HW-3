@@ -1,0 +1,16 @@
+import numpy as np
+
+def is_rotation_matrix(R, tol=1e-5): #tol is the tolerance level
+    if not np.isclose(np.linalg.det(R), 1, atol=tol): #determinant calucation function
+        return False
+
+    identity = np.eye(3)
+    RR_T = np.dot(R, R.T)
+    if not np.allclose(RR_T, identity, atol=tol): #this function chrcks elements in matrix
+        return False
+
+    return True
+
+
+R = np.array([[1, 0, 0], [0, 1, 0], [0, 0, -1]])
+print(is_rotation_matrix(R))  
